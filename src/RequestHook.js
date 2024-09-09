@@ -31,8 +31,7 @@ module.exports = async ({request, store, network}) => {
             token = await store.getItem(tokenKey),
             authRequestId = await store.getItem(buildStoreKey(STORE_REQUEST_ID_KEY, workspace)),
             hasAuthHeader = hasAuthentication(request)
-        // hasAuthHeader = request.hasHeader(HEADER_AUTHORIZATION) || Object.keys(request.getAuthentication()).length,
-        prefix = request.getEnvironmentVariable(ENVIRONMENT_PREFIX_KEY) ?? ENVIRONMENT_DEFAULT_PREFIX;
+            prefix = request.getEnvironmentVariable(ENVIRONMENT_PREFIX_KEY) ?? ENVIRONMENT_DEFAULT_PREFIX;
 
         if (authRequestId === null || (request.getId() === authRequestId) || hasAuthHeader) {
             return;
